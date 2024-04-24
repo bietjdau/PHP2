@@ -1,0 +1,20 @@
+
+{
+    "name": "Thanhdo/mvcoop",
+    "autoload": {
+        "psr-4": {
+            "Thanhdo\\Mvcoop\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "thanhdo",
+            "email": "Thanhdo@gmail.com"
+        }
+    ],
+    "require": {
+        "bramus/router": "~1.6",
+        "eftec/bladeone": "^4.9",
+        "rakit/validation": "^1.4"
+    }
+}

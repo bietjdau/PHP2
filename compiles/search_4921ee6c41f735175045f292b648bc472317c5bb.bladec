@@ -1,0 +1,141 @@
+<?php $_shouldextend[1]=1; ?>
+
+<?php $this->startSection('title'); ?>
+<?php $this->stopSection(); ?>
+
+<?php $this->startSection('content'); ?>
+ <!-- ======= Search Results ======= -->
+ <section id="search-result" class="search-result">
+ <div class="container">
+ <div class="row">
+ <div class="col-md-9">
+ <h3 class="category-title">Search Results :<?php echo \htmlentities($key??'', ENT_QUOTES, 'UTF-8', false); ?></h3>
+ <?php $__currentLoopData = $posts; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $post): $loop = $this->incrementLoopIndices();  ?>
+ <div class="d-md-flex post-entry-2 small-img">
+ <a href="/post/<?php echo \htmlentities($post['id']??'', ENT_QUOTES, 'UTF-8', false); ?>" class="me-4 thumbnail">
+ <img src="<?php echo \htmlentities($post['image']??'', ENT_QUOTES, 'UTF-8', false); ?>" alt="" class="img-fluid">
+ </a>
+ <div>
+ <div class="post-meta"><span class="date"><?php echo \htmlentities($post['category_name']??'', ENT_QUOTES, 'UTF-8', false); ?></span> <span
+ class="mx-1">&bullet;</span>
+ <span><?php echo \htmlentities($post['date']??'', ENT_QUOTES, 'UTF-8', false); ?></span>
+ </div>
+ <h3><a href="/post/<?php echo \htmlentities($post['id']??'', ENT_QUOTES, 'UTF-8', false); ?>"><?php echo \htmlentities($post['title']??'', ENT_QUOTES, 'UTF-8', false); ?></a></h3>
+ <p><?php echo \htmlentities($post['excerpt']??'', ENT_QUOTES, 'UTF-8', false); ?></p>
+ <?php /* <div class="d-flex align-items-center author">
+ <div class="photo"><img src="assets/img/person-2.jpg" alt="" class="img-fluid">
+ </div>
+ <div class="name">
+ <h3 class="m-0 p-0">Wade Warren</h3>
+ </div>
+ </div> */ ?>
+ </div>
+ </div>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+
+
+ <?php 
+ $so = 1;
+ ?>
+ <div class="text-start py-4">
+ <div class="custom-pagination">
+
+ <a href="" class="prev">Prevous</a>
+
+ <?php for($i = 1; $i <= $trang; $i++): ?>
+ <a href="/search?key=<?php echo \htmlentities($key??'', ENT_QUOTES, 'UTF-8', false); ?>&page=<?php echo \htmlentities($so??'', ENT_QUOTES, 'UTF-8', false); ?>"
+ <?php if($so == $page): ?> class="active"
+ <?php else: ?> <?php endif; ?>><?php echo \htmlentities($so++??'', ENT_QUOTES, 'UTF-8', false); ?></a>
+ <?php endfor; ?>
+
+ <a href="" class="next">Next</a>
+ </div>
+ </div>
+
+ </div>
+
+ <div class="col-md-3">
+ <!-- ======= Sidebar ======= -->
+ <div class="aside-block">
+
+ <div class="aside-block">
+
+ <ul class="nav nav-pills custom-tab-nav mb-4" id="pills-tab" role="tablist">
+
+ <li class="nav-item" role="presentation">
+ <button class="nav-link active" id="pills-trending-tab" data-bs-toggle="pill"
+ data-bs-target="#pills-trending" type="button" role="tab"
+ aria-controls="pills-trending" aria-selected="false">Trending</button>
+ </li>
+ <li class="nav-item" role="presentation">
+ <button class="nav-link" id="pills-latest-tab" data-bs-toggle="pill"
+ data-bs-target="#pills-latest" type="button" role="tab"
+ aria-controls="pills-latest" aria-selected="false">Latest</button>
+ </li>
+ </ul>
+
+ <div class="tab-content" id="pills-tabContent">
+
+
+ <!-- Trending -->
+ <div class="tab-pane fade show active" id="pills-trending" role="tabpanel"
+ aria-labelledby="pills-trending-tab">
+ <?php $__currentLoopData = $trendings; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $trending): $loop = $this->incrementLoopIndices();  ?>
+ <?php echo $this->runChild('components.post-entry-1-border-bottom', [
+ 'post' => $trending,
+ ]); ?>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+
+
+ </div> <!-- End Trending -->
+
+ <!-- Latest -->
+ <div class="tab-pane fade" id="pills-latest" role="tabpanel"
+ aria-labelledby="pills-latest-tab">
+ <?php $__currentLoopData = $latests; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $latest): $loop = $this->incrementLoopIndices();  ?>
+ <?php echo $this->runChild('components.post-entry-1-border-bottom', [
+ 'post' => $latest,
+ ]); ?>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+
+
+ </div> <!-- End Latest -->
+
+ </div>
+ </div>
+
+ <?php 
+ $categories = (new \Xuyenqua\Mvcoop\Models\Category())->getForMenu();
+ ?>
+
+ <div class="aside-block">
+ <h3 class="aside-title">Categories</h3>
+ <ul class="aside-links list-unstyled">
+
+ <?php $__currentLoopData = $categories; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $category): $loop = $this->incrementLoopIndices();  ?>
+ <li><a href="/<?php echo \htmlentities($category['id']??'', ENT_QUOTES, 'UTF-8', false); ?>/category"><i class="bi bi-chevron-right"></i>
+ <?php echo \htmlentities($category['name']??'', ENT_QUOTES, 'UTF-8', false); ?></a></li>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+
+ </ul>
+ </div><!-- End Categories -->
+
+
+
+ </div>
+
+
+
+
+ </div>
+
+ </div>
+ </div>
+ </section> <!-- End Search Result -->
+<?php $this->stopSection(); ?>
+
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layouts.master'); } ?>

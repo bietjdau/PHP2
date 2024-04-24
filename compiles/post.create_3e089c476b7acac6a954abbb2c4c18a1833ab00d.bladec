@@ -1,0 +1,57 @@
+<?php $_shouldextend[1]=1; ?>
+
+<?php $this->startSection('content'); ?>
+ <div class="container">
+ <h1>Thêm mới bài viết</h1>
+
+ <div class="row">
+ <form action="" method="POST" enctype="multipart/form-data">
+ <div class="mb-3 mt-3">
+ <label for="category" class="form-label">Category:</label>
+ <select name="category_id" class="form-control" id="category">
+ <option value=""></option>
+ <?php $__currentLoopData = $category; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $item): $loop = $this->incrementLoopIndices();  ?>
+ <option value="<?php echo \htmlentities($item['id']??'', ENT_QUOTES, 'UTF-8', false); ?>"><?php echo \htmlentities($item['name']??'', ENT_QUOTES, 'UTF-8', false); ?></option>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </select>
+
+ </div>
+ <div class="mb-3 mt-3">
+ <label for="title" class="form-label">title:</label>
+ <input type="text" class="form-control" id="title" placeholder="Enter name" name="title"
+ required>
+ </div>
+ <div class="mb-3 mt-3">
+ <label for="excerpt" class="form-label">excerpt:</label>
+ <input type="text" class="form-control" id="excerpt" placeholder="Enter name" name="excerpt"
+ required>
+ </div>
+ <div class="mb-3 mt-3">
+ <label for="content" class="form-label">content:</label>
+ <textarea  name="content"  required  cols="30" rows="10"></textarea>
+ </div>
+ <div class="mb-3 mt-3">
+ <label for="image" class="form-label">Ảnh:</label>
+ <input type="file" class="form-control" id="image" placeholder="Enter name" name="image"
+ required>
+ </div>
+ <?php /* <button type="submit" class="btn btn-primary">Submit</button> */ ?>
+ <input type="submit" class="btn btn-primary" value="Submit">
+ </form>
+ </div>
+ </div>
+
+ <?php /* <script>
+ ClassicEditor
+ .create( document.querySelector( '#noidung' ) )
+ .then( editor => {
+ console.log( editor );
+ } )
+ .catch( error => {
+ console.error( error );
+ } );
+</script> */ ?>
+<?php $this->stopSection(); ?>
+
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layouts.master'); } ?>
