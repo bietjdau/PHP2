@@ -30,7 +30,7 @@ class Comment extends Model
             $sql = "INSERT INTO `comments`(`post_id`, `name`, `email`, `message`, `date`) 
                     VALUES (:post_id,:name,:email,:message,:date)
                 ";
-            // echo $sql;
+            echo $sql ;
 
             $stmt = $this->conn->prepare($sql);
 
@@ -39,7 +39,7 @@ class Comment extends Model
             $stmt->bindParam(":email", $email);
             $stmt->bindParam(":message", $message);
             $stmt->bindParam(":date", $date);
-
+            $stmt-> bindParam(":date" ,$date);
             $stmt->execute();
         } catch (\Exception $e) {
             echo 'ERROR: ' . $e->getMessage();
@@ -59,6 +59,7 @@ class Comment extends Model
             $stmt->execute();
         } catch (\Exception $e) {
             echo 'ERROR: ' . $e->getMessage();
+            echo 'ERROT: ' . $e -> getMessage();
             die;
         }
     }

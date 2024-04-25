@@ -3,7 +3,7 @@
         <a href="/" class="logo d-flex align-items-center">
             <!-- Uncomment the line below if you also wish to use an image logo -->
             <!-- <img src="/assets/client/assets/img/logo.png" alt=""> -->
-            <h1>NTX-Blog</h1>
+            <h1>X-Blog</h1>
         </a>
 
         @php
